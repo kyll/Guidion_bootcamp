@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   // code to run on server at startup
+  // set up db with initial tickets and experts
   if (Tickets.find().count() === 0) {
     const tickets = [
       {
@@ -55,6 +56,7 @@ Meteor.startup(() => {
 
   return Meteor.methods({
     unMatch: function() {
+      // remove color field to show the entry is not matched
       Experts.update({}, {$unset: {color: ''}}, {multi: true});
       Tickets.update({}, {$unset: {color: ''}}, {multi: true});
       return Matches.remove({}) ;
