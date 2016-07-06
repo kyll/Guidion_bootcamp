@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Available experts</h3></div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="expert in expertsList.experts" style="background-color: {{expert.color}};">
+                <div class="row">
+                    <div class="col-xs-4">
+                        Name:
+                        <h4>{{expert.name}}</h4>
+                    </div>
+                    <div class="col-xs-6">
+                        Operates in:
+                        <h4>{{expert.operating_region}}</h4>
+                    </div>
+                    <div class="col-xs-2">
+                        <button  class="btn btn-default btn-danger pull-right" ng-click="expertsList.removeExpert(expert._id)">&times</button>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <form ng-submit="expertsList.addExpert()">
+                        <div class="form-group col-md-4">
+                            <input ng-model="expertsList.newExpert.name" type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input ng-model="expertsList.newExpert.operating_region" type="text" class="form-control" id="operating_region" placeholder="Operating region">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-default pull-right">+</button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
