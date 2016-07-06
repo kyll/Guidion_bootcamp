@@ -1,4 +1,4 @@
-# Guidion bootcamp assigenment
+# Guidion bootcamp assignment
 
 See the assignment in description.pdf
 
