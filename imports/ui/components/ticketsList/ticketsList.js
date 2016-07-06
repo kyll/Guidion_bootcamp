@@ -24,9 +24,22 @@ class TicketsList {
     this.newTicket = {};
   }
 
+  removeExpert(expertId) {
+    var match = Matches.findOne({expert_id: expertId});
+    if (match) {
+      Tickets.update(match.ticket_id, {$unset: {color: ''}});
+      Matches.remove(match._id);
+    }
+    Experts.remove(expertId);
+  }
+
   removeTicket(ticketId) {
+    var match = Matches.findOne({ticket_id: ticketId});
+    if (match) {
+      Experts.update(match.expert_id, {$unset: {color: ''}});
+      Matches.remove(match._id);
+    }
     Tickets.remove(ticketId);
-    Meteor.call('unMatch');
   }
 }
 

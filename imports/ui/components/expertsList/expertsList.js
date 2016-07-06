@@ -25,8 +25,12 @@ class ExpertsList {
   }
 
   removeExpert(expertId) {
+    var match = Matches.findOne({expert_id: expertId});
+    if (match) {
+      Tickets.update(match.ticket_id, {$unset: {color: ''}});
+      Matches.remove(match._id);
+    }
     Experts.remove(expertId);
-    Meteor.call('unMatch');
   }
 }
 

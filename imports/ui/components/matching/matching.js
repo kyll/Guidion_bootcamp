@@ -55,6 +55,7 @@ class Matching {
       }
     });
   }
+  
   match() {
     var colors = this.randomColors(Tickets.find({}).count());
 
@@ -66,7 +67,7 @@ class Matching {
         // set color for ticket and expert to imply match and insert title and name in match collection
         Experts.update(expert._id, {$set: {color: color}});
         Tickets.update(ticket._id, {$set: {color: color}});
-        Matches.insert({expert: expert.name, ticket: ticket.title, timestamp: new Date()})
+        Matches.insert({expert_id: expert._id, ticket_id: ticket._id, expert: expert.name, ticket: ticket.title, timestamp: new Date()})
       }
     });
   }
@@ -76,7 +77,7 @@ class Matching {
   }
 
   isMatched() {
-    return Matches.find({}).count();
+    return !!Matches.find({}).count();
   }
 }
 
