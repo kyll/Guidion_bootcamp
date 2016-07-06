@@ -46,6 +46,15 @@ class Matching {
     return array;
   }
 
+  updateMatches() {
+    Meteor.call('unMatch', (err, res) => {
+      if(err){
+        console.log(err);
+      }else{
+        this.match()
+      }
+    });
+  }
   match() {
     var colors = this.randomColors(Tickets.find({}).count());
 
